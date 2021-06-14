@@ -51,6 +51,28 @@ class ProductItem {
     }
 }
 
+class Card {
+
+    addProduct() {
+        // добавить товар
+    }
+    delProduct() {
+        // удалить товар
+    }
+    clearCard() {
+        // очистить корзину
+    }
+dataCerd() {
+    // получить данные корзины для оформления покупки
+}
+}
+
+class CardProducts {
+    getProduct() {
+        // получить данные о продукте
+    }
+}
+
 let list = new ProductList();
 
 
