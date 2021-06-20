@@ -75,6 +75,20 @@ img {
     border-color: #2f2a2d;
     color: #2f2a2d;
 }
-/* .none {
+.none {
     display: none;
-} */
+}
+.cart-item {
+    display: flex;
+    justify-content: center;
+}
+.product {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+    border: 1px solid #c0c0c040;
+    padding: 15px;
+}

@@ -114,9 +114,9 @@ class BasketItem {
         return ` <div class="cart-item">
         <div class="product">
             <div class="product-info">
-                <p class="product-tittle">${product.product_name}</p>
-                <p class="product-quantity">Quantity: ${product.quantity}</p>
-                <p class="product-single-price">$ ${product.price} </p>
+                <h3 class="product-tittle">${item.product_name}</h3>
+                <p class="product-quantity">Quantity: ${item.quantity}</p>
+                <p class="product-single-price">$ ${item.price} </p>
             </div>
         </div>
     </div>`
