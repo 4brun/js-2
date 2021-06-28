@@ -4,11 +4,11 @@ const app = new Vue({
     el: '#app',
     data: {
         catalogUrl: '/catalogData.json',
+        basketUrl: '/getBasket.json',
         products: [],
         filtered: [], // массив отфильтрованных товаров
         imgCatalog: 'https://placehold.it/200x150',
         userSearch: '',
-        show: false,
         cartProd: [] // массив для товаров, добавленных в корзину
     },
     methods: {
@@ -25,29 +25,35 @@ const app = new Vue({
             console.log(this.cartProd)
         },
         filter() {
-            const regexp = new RegExp(this.userSearch);
+            const regexp = new RegExp(this.userSearch, 'i');
             this.filtered = this.products.filter(product => regexp.test(product.product_name));
             // console.log(this.userSearch);
         },
         isVisibleCart() {
             document.querySelector('.cart-block').classList.toggle('invisible'); // находим корзину и убираем класс-нивидимку
+        },
+        mounted() {
+            this.getJson(`${API + this.catalogUrl}`)
+                .then(data => {
+                    for (let el of data) {
+                        this.products.push(el);
+                        this.filtered.push(el);
+                    }
+                });
+            this.getJson(`getProducts.json`)
+                .then(data => {
+                    for (let el of data) {
+                        this.products.push(el);
+                        this.filtered.push(el);
+                    }
+                });
+            this.getJson(`${API + this.basketUrl}`)
+                .then(data => {
+                    for (let el of data.contents) {
+                        this.cartProd.push(el);
+                    }
+                });
         }
-    },
-    mounted() {
-        this.getJson(`${API + this.catalogUrl}`)
-            .then(data => {
-                for (let el of data) {
-                    this.products.push(el);
-                    this.filtered.push(el);
-                }
-            });
-        this.getJson(`getProducts.json`)
-            .then(data => {
-                for (let el of data) {
-                    this.products.push(el);
-                    this.filtered.push(el);
-                }
-            })
     }
 })
 
@@ -244,4 +250,3 @@ const app = new Vue({
 // let cart = new Cart();
 // let products = new ProductsList(cart);
 // products.getJson(`getProducts.json`).then(data => products.handleData(data));
-
