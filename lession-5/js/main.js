@@ -31,31 +31,31 @@ const app = new Vue({
         },
         isVisibleCart() {
             document.querySelector('.cart-block').classList.toggle('invisible'); // находим корзину и убираем класс-нивидимку
-        },
-        mounted() {
-            this.getJson(`${API + this.catalogUrl}`)
-                .then(data => {
-                    for (let el of data) {
-                        this.products.push(el);
-                        this.filtered.push(el);
-                    }
-                });
-            this.getJson(`getProducts.json`)
-                .then(data => {
-                    for (let el of data) {
-                        this.products.push(el);
-                        this.filtered.push(el);
-                    }
-                });
-            this.getJson(`${API + this.basketUrl}`)
-                .then(data => {
-                    for (let el of data.contents) {
-                        this.cartProd.push(el);
-                    }
-                });
         }
+    },
+    mounted() {
+        this.getJson(`${API + this.catalogUrl}`)
+            .then(data => {
+                for (let el of data) {
+                    this.products.push(el);
+                    this.filtered.push(el);
+                }
+            });
+        this.getJson(`getProducts.json`)
+            .then(data => {
+                for (let el of data) {
+                    this.products.push(el);
+                    this.filtered.push(el);
+                }
+            });
+        this.getJson(`${API + this.basketUrl}`)
+            .then(data => {
+                for (let el of data.contents) {
+                    this.cartProd.push(el);
+                }
+            });
     }
-})
+});
 
 // class List {
 //     constructor(url, container, list = list2){
